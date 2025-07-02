@@ -8,8 +8,8 @@ These scripts are meant to help developers test basic PYUSD flows like checking 
 
 | Network | Contract Address | Status |
 |---------|------------------|---------|
-| Arbitrum One (Mainnet) | `<mainnet-address-here>` | Coming Soon |
-| Arbitrum Sepolia (Testnet) | `<testnet-address-here>` | Coming Soon |
+| Arbitrum One (Mainnet) | `0x46850aD61C2B7d64d08c9C754F45254596696984` | Coming Soon |
+| Arbitrum Sepolia (Testnet) | `0x637A1259C6afd7E3AdF63993cA7E58BB438aB1B` | Coming Soon |
 
 > **Note:** These recipes currently target Arbitrum Sepolia testnet. Mainnet support will be added when PYUSD is deployed to Arbitrum One.
 
@@ -44,23 +44,11 @@ PYUSD_ADDRESS=<contract-address-when-available>
 ### 3. Get Arbitrum Testnet Funds
 
 - **Arbitrum Sepolia ETH:** https://arbitrum.faucet.dev/ArbSepolia
-- **PYUSD on Arbitrum Sepolia:** Get from faucet (URL TBD)
 
-### 4. Run Scripts
+- **PYUSD on Arbitrum Sepolia:** 
+    - https://faucet.paxos.com/
+    - https://cloud.google.com/application/web3/faucet
 
-Choose your preferred approach:
-
-**Shell Scripts (Foundry/cast):**
-```bash
-./shell-recipes/check_balance.sh <address>
-./shell-recipes/send_pyusd.sh <recipient> <amount>
-```
-
-**TypeScript Scripts (viem):**
-```bash
-npx tsx ts-recipes/checkBalance.ts [address]
-npx tsx ts-recipes/sendToPaypal.ts <recipient> <amount>
-```
 
 ## Recipe Collections
 
