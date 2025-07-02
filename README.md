@@ -11,7 +11,29 @@ These scripts are meant to help developers test basic PYUSD flows like checking 
 | Arbitrum One (Mainnet) | `0x46850aD61C2B7d64d08c9C754F45254596696984` | Coming Soon |
 | Arbitrum Sepolia (Testnet) | `0x637A1259C6afd7E3AdF63993cA7E58BB438aB1B` | Coming Soon |
 
-> **Note:** These recipes currently target Arbitrum Sepolia testnet. Mainnet support will be added when PYUSD is deployed to Arbitrum One.
+## Recipes
+
+We've put together a few simple scripts to show interaction with the PYUSD ERC-20 contract on Arbitrum. You can run these scripts directly in your terminal. 
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (v18+) for TypeScript recipes
+- [Foundry](https://book.getfoundry.sh/getting-started/installation) for cast recipes
+
+### 🔧 [Shell Recipes](./shell-recipes/)
+
+Shell scripts using Foundry's `cast` command-line tool for Arbitrum interactions.
+
+- [`check_balance.sh`](./shell-recipes/check_balance.sh) - Check Arbitrum PYUSD balance
+- [`send_pyusd.sh`](./shell-recipes/send_pyusd.sh) - Send Arbitrum PYUSD tokens
+
+### 📝 [TypeScript Recipes](./ts-recipes/)
+
+TypeScript scripts using the `viem` library for Arbitrum interactions. 
+
+- [`checkBalance.ts`](./ts-recipes/checkBalance.ts) - Check Arbitrum PYUSD balance
+- [`sendToPaypal.ts`](./ts-recipes/sendToPaypal.ts) - Send Arbitrum PYUSD
+
 
 ## Quick Start
 
@@ -23,7 +45,23 @@ cd pyusd-recipes
 npm install
 ```
 
-### 2. Create Environment File
+### 2. Create a dev wallet
+
+Generate a new testnet wallet with Foundry:
+
+```bash
+cast wallet new
+```
+
+Or create a vanity address:
+
+```bash
+cast wallet vanity --starts-with f00
+```
+
+> 🧐 **Security Note:** These examples are for testing purposes only. We recommend using a wallet generated and stored in a more secure manner for production use.
+
+### 3. Set up environment variables
 
 Copy the template and fill in your values:
 
@@ -41,64 +79,15 @@ WALLET_ADDRESS=your_wallet_address
 PYUSD_ADDRESS=<contract-address-when-available>
 ```
 
-### 3. Get Arbitrum Testnet Funds
+> 🧐 **Another Security Note:** See how we put the private key in a `.env` file like that? Don't do that in production or with mainnet. Use a more secure approach like a [keystore with secret](https://getfoundry.sh/cast/reference/cast-wallet-import/), [hardware wallet](https://getfoundry.sh/reference/common/multi-wallet-options-hardware), or a secrets manager.
 
-- **Arbitrum Sepolia ETH:** https://arbitrum.faucet.dev/ArbSepolia
+### 4. Get Arbitrum testnet ETH + PYUSD
 
-- **PYUSD on Arbitrum Sepolia:** 
+- Arbitrum Sepolia ETH: 
+    - https://arbitrum.faucet.dev/ArbSepolia
+
+- PYUSD on Arbitrum Sepolia:
     - https://faucet.paxos.com/
     - https://cloud.google.com/application/web3/faucet
 
 
-## Recipe Collections
-
-### 🔧 [Shell Recipes](./shell-recipes/)
-Shell scripts using Foundry's `cast` command-line tool for Arbitrum interactions. Perfect for quick command-line interactions and shell scripting.
-
-- [`check_balance.sh`](./shell-recipes/check_balance.sh) - Check PYUSD balance on Arbitrum
-- [`send_pyusd.sh`](./shell-recipes/send_pyusd.sh) - Send PYUSD tokens on Arbitrum
-
-### 📝 [TypeScript Recipes](./ts-recipes/)
-TypeScript scripts using the modern `viem` library for Arbitrum interactions. Ideal for programmatic integration and type-safe development.
-
-- [`checkBalance.ts`](./ts-recipes/checkBalance.ts) - Check PYUSD balance on Arbitrum with TypeScript
-- [`sendToPaypal.ts`](./ts-recipes/sendToPaypal.ts) - Send PYUSD on Arbitrum with full type safety
-
-## Current Configuration
-
-- **Network:** Arbitrum Sepolia Testnet
-- **PYUSD Address:** `<testnet-address-here>`
-- **Decimals:** 6 (1 PYUSD = 1,000,000 raw units)
-- **RPC URL:** `https://sepolia.arbitrum.io/rpc`
-
-## Prerequisites
-
-- [Node.js](https://nodejs.org/) (v18+) for TypeScript recipes
-- [Foundry](https://book.getfoundry.sh/getting-started/installation) for cast recipes
-
-## Creating a Dev Wallet
-
-Generate a new testnet wallet with Foundry:
-
-```bash
-cast wallet new
-```
-
-Or create a vanity address:
-
-```bash
-cast wallet vanity --starts-with f00
-```
-
-> **Security Note:** These examples are for testnet only. Never use real funds or production keys.
-
-## Notes
-
-- All scripts automatically load configuration from the root `.env` file
-- Amounts are specified in PYUSD (human-readable format)
-- Scripts handle decimal conversion automatically
-- For production use, consider hardware wallets or encrypted keystores
-
-## License
-
-MIT
