@@ -1,113 +1,115 @@
-# PYUSD Recipes
+# PYUSD Arbitrum Recipes
 
-Quick, runnable examples for working with PYUSD on Arbitrum Sepolia using Foundry and TypeScript.
+Quick, runnable examples for working with PYUSD on Arbitrum using Foundry and TypeScript.
 
-These scripts are meant to help developers test basic PYUSD flows like checking balances and sending tokens. Each script is standalone and assumes you're working with a dev wallet and testnet funds.
+These scripts are meant to help developers test basic PYUSD flows like checking balances and sending tokens on Arbitrum. Each script is standalone and assumes you're working with a dev wallet and testnet funds.
 
----
+## PYUSD Contract Addresses
 
-## Requirements
+| Network | Contract Address | Status |
+|---------|------------------|---------|
+| Arbitrum One (Mainnet) | `<mainnet-address-here>` | Coming Soon |
+| Arbitrum Sepolia (Testnet) | `<testnet-address-here>` | Coming Soon |
 
-### System prerequisites
-- [Node.js](https://nodejs.org/) (v18+)
-- [Foundry](https://book.getfoundry.sh/getting-started/installation) (`forge` and `cast`)
+> **Note:** These recipes currently target Arbitrum Sepolia testnet. Mainnet support will be added when PYUSD is deployed to Arbitrum One.
 
----
+## Quick Start
 
-## Create a Dev Wallet
+### 1. Clone and Setup
 
-If you don’t already have one, you can generate a new private key using Foundry:
-
+```bash
+git clone https://github.com/mono-koto/pyusd-recipes.git
+cd pyusd-recipes
+npm install
 ```
+
+### 2. Create Environment File
+
+Copy the template and fill in your values:
+
+```bash
+cp .env.template .env
+# Edit .env with your actual values
+```
+
+Or create a `.env` file manually with:
+
+```bash
+PRIVATE_KEY=your_testnet_private_key
+ETH_RPC_URL=https://sepolia.arbitrum.io/rpc
+WALLET_ADDRESS=your_wallet_address
+PYUSD_ADDRESS=<contract-address-when-available>
+```
+
+### 3. Get Arbitrum Testnet Funds
+
+- **Arbitrum Sepolia ETH:** https://arbitrum.faucet.dev/ArbSepolia
+- **PYUSD on Arbitrum Sepolia:** Get from faucet (URL TBD)
+
+### 4. Run Scripts
+
+Choose your preferred approach:
+
+**Shell Scripts (Foundry/cast):**
+```bash
+./shell-recipes/check_balance.sh <address>
+./shell-recipes/send_pyusd.sh <recipient> <amount>
+```
+
+**TypeScript Scripts (viem):**
+```bash
+npx tsx ts-recipes/checkBalance.ts [address]
+npx tsx ts-recipes/sendToPaypal.ts <recipient> <amount>
+```
+
+## Recipe Collections
+
+### 🔧 [Shell Recipes](./shell-recipes/)
+Shell scripts using Foundry's `cast` command-line tool for Arbitrum interactions. Perfect for quick command-line interactions and shell scripting.
+
+- [`check_balance.sh`](./shell-recipes/check_balance.sh) - Check PYUSD balance on Arbitrum
+- [`send_pyusd.sh`](./shell-recipes/send_pyusd.sh) - Send PYUSD tokens on Arbitrum
+
+### 📝 [TypeScript Recipes](./ts-recipes/)
+TypeScript scripts using the modern `viem` library for Arbitrum interactions. Ideal for programmatic integration and type-safe development.
+
+- [`checkBalance.ts`](./ts-recipes/checkBalance.ts) - Check PYUSD balance on Arbitrum with TypeScript
+- [`sendToPaypal.ts`](./ts-recipes/sendToPaypal.ts) - Send PYUSD on Arbitrum with full type safety
+
+## Current Configuration
+
+- **Network:** Arbitrum Sepolia Testnet
+- **PYUSD Address:** `<testnet-address-here>`
+- **Decimals:** 6 (1 PYUSD = 1,000,000 raw units)
+- **RPC URL:** `https://sepolia.arbitrum.io/rpc`
+
+## Prerequisites
+
+- [Node.js](https://nodejs.org/) (v18+) for TypeScript recipes
+- [Foundry](https://book.getfoundry.sh/getting-started/installation) for cast recipes
+
+## Creating a Dev Wallet
+
+Generate a new testnet wallet with Foundry:
+
+```bash
 cast wallet new
 ```
 
-This gives you a private key and public address. Fund it with ETH on Arbitrum Sepolia for gas, and send it PYUSD from an existing wallet if you have testnet tokens.
+Or create a vanity address:
 
-> These examples assume you're using a testnet wallet. **Do not** use real funds or production keys.
-
----
-
-## Setup
-
-### 1. Clone this repo
-
-```
-git clone https://github.com/your-org/pyusd-recipes.git
-cd pyusd-recipes
+```bash
+cast wallet vanity --starts-with f00
 ```
 
-### 2. Create a `.env` file
-
-Create a file called `.env` in the root of the repo with the following content:
-
-```
-PRIVATE_KEY=your_testnet_private_key
-RPC_URL=https://sepolia.arbitrum.io/rpc
-```
-
-> On mainnet or for more secure usage, consider using [hardware wallets](https://book.getfoundry.sh/cli/cheatcodes#using-a-hardware-wallet) or Foundry’s built-in wallet support via `--ledger`, `--keystore`, or encrypted key files.
-
----
-
-## PYUSD Address (Arbitrum Sepolia)
-
-Contract address: `0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef`
-
-> Confirm the token address and decimal settings if you’re adapting these scripts for mainnet.
-
----
-
-## Using the Recipes
-
-### Foundry / `cast` Scripts
-
-These use `cast` to interact with the PYUSD contract directly from the command line.
-
-```
-cd foundry
-```
-
-- `check_balance.sh`  
-  Get the PYUSD balance of any address.
-
-- `send_pyusd.sh`  
-  Send PYUSD from your wallet to another address.
-
-> Scripts pull config from `.env` and use `cast send` and `cast call`.
-
----
-
-### TypeScript + `viem` Scripts
-
-These scripts use `viem` for a more programmatic interface, runnable with `npx tsx`.
-
-```
-cd typescript
-```
-
-- `checkBalance.ts`  
-  Logs the PYUSD balance of your wallet.
-
-- `sendToPaypal.ts`  
-  Sends a test transfer to a known PayPal-owned address.
-
-Run with:
-
-```
-npx tsx checkBalance.ts
-npx tsx sendToPaypal.ts
-```
-
----
+> **Security Note:** These examples are for testnet only. Never use real funds or production keys.
 
 ## Notes
 
-- These scripts are for demo and testing purposes only.
-- You can copy, modify, and use them freely in your own workflows.
-- No warranties, use at your own risk.
-
----
+- All scripts automatically load configuration from the root `.env` file
+- Amounts are specified in PYUSD (human-readable format)
+- Scripts handle decimal conversion automatically
+- For production use, consider hardware wallets or encrypted keystores
 
 ## License
 
