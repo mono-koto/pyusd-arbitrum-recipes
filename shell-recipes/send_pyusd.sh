@@ -31,7 +31,7 @@ AMOUNT_PYUSD=$2
 echo "Sending $AMOUNT_PYUSD PYUSD to $RECIPIENT"
 
 # Convert to raw units (multiply by 1,000,000 for 6 decimals)
-# TODO: Handle floating point conversion properly
+# This is a little bit of a hack because we get a decimal from bc
 RAW_AMOUNT=$(echo "$AMOUNT_PYUSD * 1000000" | bc | cut -d. -f1)
 
 echo "Raw amount: $RAW_AMOUNT"

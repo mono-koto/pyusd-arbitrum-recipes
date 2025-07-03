@@ -6,16 +6,14 @@ TypeScript scripts using the `viem` library for PYUSD interactions on Arbitrum.
 
 ## Prerequisites
 
-- [Node.js](https://nodejs.org/) (v18+)
-- Dependencies installed: `npm install` (from project root)
-- A `.env` file in the project root with:
-  ```
-  PRIVATE_KEY=your_testnet_private_key
-  ETH_RPC_URL=https://sepolia.arbitrum.io/rpc
-  WALLET_ADDRESS=your_wallet_address
-  ```
-## Dependencies
+If you haven't already, make sure to set up according to the [main README](../README.md).
 
+## Install dependencies
+
+```bash
+npm install
+```
+We're only using a few libraries of note:
 - `viem` - Modern Ethereum library
 - `dotenv` - Environment variable loading
 - `@commander-js/extra-typings` - CLI argument parsing with TypeScript support
@@ -38,6 +36,3 @@ Uses your private key from `.env` to sign a PYUSD transfer transaction and submi
 ```bash
 npx tsx ts-recipes/sendToPaypal.ts <recipient_address> <amount_in_pyusd>
 ```
-
-
-

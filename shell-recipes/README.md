@@ -6,13 +6,7 @@ Shell scripts using Foundry's `cast` command-line tool for PYUSD interactions on
 
 ## Prerequisites
 
-- [Foundry](https://book.getfoundry.sh/getting-started/installation) (`cast` command)
-- A `.env` file in the project root with:
-  ```
-  PRIVATE_KEY=your_testnet_private_key
-  ETH_RPC_URL=https://sepolia.arbitrum.io/rpc
-  WALLET_ADDRESS=your_wallet_address
-  ```
+If you haven't already, make sure to get foundry and your dev wallet set up according to the [main README](../README.md).
 
 ## Scripts
 
@@ -42,4 +36,3 @@ What it's doing:
 - Uses `cast send` to call the `transfer(address,uint256)` function on the PYUSD contract
 - Signs the transaction using the private key from your `.env` file
 - Submits the transaction to the Arbitrum Sepolia network via the specified RPC URL
-

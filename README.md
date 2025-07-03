@@ -15,11 +15,6 @@ These scripts are meant to help developers test basic PYUSD flows like checking 
 
 We've put together a few simple scripts to show interaction with the PYUSD ERC-20 contract on Arbitrum. You can run these scripts directly in your terminal. 
 
-### Prerequisites
-
-- [Node.js](https://nodejs.org/) (v18+) for TypeScript recipes
-- [Foundry](https://book.getfoundry.sh/getting-started/installation) for cast recipes
-
 ### 🔧 [Shell Recipes](./shell-recipes/)
 
 Shell scripts using Foundry's `cast` command-line tool for Arbitrum interactions.
@@ -37,12 +32,16 @@ TypeScript scripts using the `viem` library for Arbitrum interactions.
 
 ## Quick Start
 
+### 0. Install tooling
+
+- [Node.js](https://nodejs.org/) (v18+) for TypeScript recipes
+- [Foundry](https://book.getfoundry.sh/getting-started/installation) for cast recipes
+
 ### 1. Clone and Setup
 
 ```bash
 git clone https://github.com/mono-koto/pyusd-recipes.git
 cd pyusd-recipes
-npm install
 ```
 
 ### 2. Create a dev wallet
