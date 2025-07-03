@@ -1,6 +1,6 @@
 # PYUSD Arbitrum Recipes
 
-Quick, runnable examples for working with PYUSD on Arbitrum using Foundry and TypeScript.
+Quick, runnable examples for working with [PYUSD](https://www.paypal.com/us/digital-wallet/manage-money/crypto/pyusd) on [Arbitrum](https://arbitrum.io/) using [Foundry](https://book.getfoundry.sh/) and [TypeScript](https://www.typescriptlang.org/).
 
 These scripts are meant to help developers test basic PYUSD flows like checking balances and sending tokens on Arbitrum. Each script is standalone and assumes you're working with a dev wallet and testnet funds.
 
